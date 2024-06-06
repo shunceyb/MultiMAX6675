@@ -48,7 +48,7 @@ void loop() {
   if(millis() >= (prev + 300)) {
     prev = millis();
     thermocouples.read(Unit::CELCIUS, thermocouple1_index, &thermocouple1_temperature);
-    thermocouples.read(Unit::CELCIUS, thermocouple2_index, &thermocouple2_temperature);
+    thermocouples.read(Unit::FAHRENHEIT, thermocouple2_index, &thermocouple2_temperature);
     Serial.println(thermocouple1_temperature);
     Serial.println(thermocouple2_temperature);
   }

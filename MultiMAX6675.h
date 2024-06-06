@@ -30,7 +30,6 @@ class MultiMAX6675 {
     std::vector<QueueItem> read_queue;
     uint16_t read_queue_free_on_beginning = 0;
     unsigned long current_millis;
-    bool start_read = false;
 };
 
 #endif

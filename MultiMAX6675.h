@@ -4,7 +4,6 @@
 #include <Arduino.h>
 #include <SPI.h>
 #include <vector>
-#include <array>
 
 enum Unit {
   CELCIUS,

@@ -1,6 +1,6 @@
 # MultiMAX6675
 ---
-### A simple Arduino library that allows you to **non-blocking(ly)** read MAX6675 K-Type Thermocouple Sensor.
+### A simple Arduino library that allows you to **non-blocking(ly)** read multiple MAX6675 K-Type Thermocouple Sensors.
 
 ## **Library is still in-progress, if you get any bugs, please open an issue.**
 

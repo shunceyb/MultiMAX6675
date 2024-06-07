@@ -7,8 +7,6 @@
 #define TC2_CS 14
 #define TC3_CS 13
 
-HardwareSerial serial = Serial;
-
 float temp1;
 float temp2;
 float temp3;

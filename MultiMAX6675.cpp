@@ -1,9 +1,11 @@
 #include "MultiMAX6675.h"
 
-void MultiMAX6675::bind(uint8_t pin, float * var, SPIClass * spi, Unit unit) {
+Thermocouple MultiMAX6675::bind(uint8_t pin, float * var, SPIClass * spi, Unit unit) {
+  Thermocouple tc = { .unit = unit, .pin = pin, .spi = spi, .var = var };
   pinMode(pin, OUTPUT);
   digitalWrite(pin, HIGH);
-  thermocouples.push_back(Thermocouple { .unit = unit, .pin = pin, .spi = spi, .var = var });
+  thermocouples.push_back(tc);
+  return tc;
 }
 
 void MultiMAX6675::loop() {

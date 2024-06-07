@@ -20,7 +20,7 @@ struct Thermocouple {
 
 class MultiMAX6675 {
   public:
-    void bind(uint8_t pin, float * var, SPIClass * spi, Unit unit = Unit::CELCIUS);
+    Thermocouple bind(uint8_t pin, float * var, SPIClass * spi, Unit unit = Unit::CELCIUS);
     void loop();
   private:
     std::vector<Thermocouple> thermocouples;

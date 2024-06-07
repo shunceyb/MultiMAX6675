@@ -5,30 +5,26 @@
 #include <SPI.h>
 #include <vector>
 
+
 enum Unit {
   CELCIUS,
   FAHRENHEIT
 };
 
-struct QueueItem {
-  unsigned long read_on;
-  uint8_t pin;
-  float * var;
+struct Thermocouple {
   Unit unit;
+  uint8_t pin;
+  SPIClass * spi;
+  float * var;
 };
 
 class MultiMAX6675 {
   public:
-    void begin(SPIClass * spi);
-    uint32_t add(uint8_t cs);
-    void read(Unit unit, uint8_t pin_index, float * var);
+    void bind(uint8_t pin, float * var, SPIClass * spi, Unit unit = Unit::CELCIUS);
     void loop();
   private:
-    SPIClass * spi;
-    std::vector<uint8_t> cs_pins;
-    std::vector<QueueItem> read_queue;
-    uint16_t read_queue_free_on_beginning = 0;
-    unsigned long current_millis;
+    std::vector<Thermocouple> thermocouples;
+    const unsigned long conversion_duration_ms = 220;
 };
 
 #endif

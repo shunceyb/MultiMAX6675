@@ -27,8 +27,9 @@ void setup() {
   Serial.begin(115200);
   SPI.begin(SPI_SCLK, SPI_MISO);
 
+  // Chip Select Pin - Pointer to a float, which will store the temperature, Pointer to an SPIClass
   tc.bind(TC1_CS, &temp1, &SPI); // Bind a thermocouple CS Pin to a variable, they will update on their own, no need for users to manually read.
-  tc.bind(TC2_CS, &temp2, &SPI, Unit::FAHRENHEIT);
+  tc.bind(TC2_CS, &temp2, &SPI, Unit::FAHRENHEIT); // They can also use different SPIClass objects now, unlike my previous version.
 }
 
 void loop() {

@@ -18,9 +18,12 @@ void setup() {
   SPI.begin(SPI_SCLK, SPI_MISO);
 
   tc.bind(TC1_CS, &temp1, &SPI); // Bind a thermocouple CS Pin to a variable, they will update on their own, no need for users to manually read.
-  tc.bind(TC2_CS, &temp2, &SPI, Unit::FAHRENHEIT);
-  Thermocouple tc3 = tc.bind(TC3_CS, &temp3, &SPI, Unit::FAHRENHEIT);
-  tc3.unit = Unit::CELCIUS; // You can dynamically change units.
+  tc.bind(TC2_CS, &temp2, &SPI, Thermocouple::Unit::FAHRENHEIT);
+  // MultiMAX6675::bind returns the index of the Thermocouple object in the array.
+  // You can save this value to update the unit dynamically.
+  // Or not, if you already know which thermocouple is in what index.
+  int tc3_index = tc.bind(TC3_CS, &temp3, &SPI, Thermocouple::Unit::FAHRENHEIT); 
+  tc.setUnit(tc3_index, Thermocouple::Unit::CELCIUS);
 }
 
 void loop() {

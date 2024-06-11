@@ -3,15 +3,9 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include <vector>
-
-
-enum Unit {
-  CELCIUS,
-  FAHRENHEIT
-};
 
 struct Thermocouple {
+  enum Unit { CELCIUS, FAHRENHEIT };
   Unit unit;
   uint8_t pin;
   SPIClass * spi;
@@ -20,11 +14,13 @@ struct Thermocouple {
 
 class MultiMAX6675 {
   public:
-    Thermocouple bind(uint8_t pin, float * var, SPIClass * spi, Unit unit = Unit::CELCIUS);
+    int bind(uint8_t pin, float * var, SPIClass * spi, Thermocouple::Unit unit = Thermocouple::Unit::CELCIUS);
     void loop();
+    void setUnit(int index, Thermocouple::Unit unit);
   private:
-    std::vector<Thermocouple> thermocouples;
+    Thermocouple * thermocouples = nullptr;
     const unsigned long conversion_duration_ms = 220;
+    int size = 0;
 };
 
 #endif

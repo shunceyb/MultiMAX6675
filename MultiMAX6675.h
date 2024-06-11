@@ -5,8 +5,13 @@
 #include <SPI.h>
 #include <vector>
 
+
+enum Unit {
+  CELCIUS,
+  FAHRENHEIT
+};
+
 struct Thermocouple {
-  enum Unit { CELCIUS, FAHRENHEIT };
   Unit unit;
   uint8_t pin;
   SPIClass * spi;
@@ -15,7 +20,7 @@ struct Thermocouple {
 
 class MultiMAX6675 {
   public:
-    Thermocouple bind(uint8_t pin, float * var, SPIClass * spi, Thermocouple::Unit unit = Thermocouple::Unit::CELCIUS);
+    Thermocouple bind(uint8_t pin, float * var, SPIClass * spi, Unit unit = Unit::CELCIUS);
     void loop();
   private:
     std::vector<Thermocouple> thermocouples;

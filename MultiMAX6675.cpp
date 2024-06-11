@@ -1,6 +1,6 @@
 #include "MultiMAX6675.h"
 
-Thermocouple MultiMAX6675::bind(uint8_t pin, float * var, SPIClass * spi, Thermocouple::Unit unit) {
+Thermocouple MultiMAX6675::bind(uint8_t pin, float * var, SPIClass * spi, Unit unit) {
   Thermocouple tc = { .unit = unit, .pin = pin, .spi = spi, .var = var };
   pinMode(pin, OUTPUT);
   digitalWrite(pin, HIGH);
@@ -27,7 +27,7 @@ void MultiMAX6675::loop() {
       uint16_t raw_temperature = thermocouples[i].spi->transfer16(0) >> 3;
       thermocouples[i].spi->endTransaction();
       digitalWrite(thermocouples[i].pin, HIGH);
-      *thermocouples[i].var = thermocouples[i].unit == Thermocouple::Unit::CELCIUS ? raw_temperature / 4.0 : ((0.45 * raw_temperature) + 32);
+      *thermocouples[i].var = thermocouples[i].unit == Unit::CELCIUS ? raw_temperature / 4.0 : ((0.45 * raw_temperature) + 32);
     }
     is_data_ready = false;
   }

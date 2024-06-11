@@ -26,4 +26,10 @@ void setup() {
 
 void loop() {
   tc.loop(); // call this as often as possible
+  Serial.print("Temperature 1: ");
+  Serial.println(temp1);
+  Serial.print("Temperature 2: ");
+  Serial.println(temp2);  
+  Serial.print("Temperature 3: ");
+  Serial.println(temp3);
 }

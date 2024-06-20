@@ -33,6 +33,8 @@ void MultiMAX6675::loop() {
       uint16_t raw_temperature = thermocouples[i].spi->transfer16(0) >> 3;
       thermocouples[i].spi->endTransaction();
       digitalWrite(thermocouples[i].pin, HIGH);
+      // °F = (1.8 × °C) + 32, the unit of the raw value is in °C, in increments of .25°C. °C = n / 4
+      // so, we can just divide the constant, 1.8, by 4 for 1 less calculation.
       *thermocouples[i].var = thermocouples[i].unit == Thermocouple::Unit::CELCIUS ? raw_temperature / 4.0 : ((0.45 * raw_temperature) + 32);
     }
     is_data_ready = false;
